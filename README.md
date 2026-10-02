@@ -105,3 +105,20 @@ spacecode/
 └── supabase/
     └── schema.sql
 ```
+
+
+## Social + AI upgrade
+
+This version adds:
+- authenticated-only learning routes
+- editable display name + unique username + avatar upload
+- Community project posts with optional screenshot/GitHub/demo links
+- likes and comments
+- a five-project guided beginner build path
+- a floating SpaceCode AI tutor backed by a Supabase Edge Function
+
+### Upgrade the database
+Run `supabase/upgrade-social-ai.sql` once in the Supabase SQL Editor.
+
+### Configure the AI tutor
+The browser never contains the AI provider secret. Deploy `supabase/functions/ai-chat/index.ts` as a Supabase Edge Function named `ai-chat`, then set the secret `OPENAI_API_KEY` in Supabase Edge Function secrets.

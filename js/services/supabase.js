@@ -21,5 +21,6 @@ export async function getProfile(userId) {
   if (!supabase || !userId) return null;
   const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).single();
   if (error) return null;
-  return data;
+  const { count } = await supabase.from("community_posts").select("id", { count: "exact", head: true }).eq("user_id", userId);
+  return { ...data, posts_count: count || 0 };
 }
